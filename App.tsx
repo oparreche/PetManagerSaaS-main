@@ -7,6 +7,8 @@ import ClientsView from './components/ClientsView';
 import PetManagement from './components/PetManagement';
 import Header from './components/Header';
 import LandingPage from './components/LandingPage';
+import PaymentReturn from './components/PaymentReturn';
+import Completion from './components/Completion';
 import ClientDashboard from './components/ClientDashboard';
 import Login from './components/Login.tsx';
 import { 
@@ -233,6 +235,8 @@ return (
         />
       }
     />
+    <Route path="/payment-return" element={<PaymentReturn />} />
+    <Route path="/completion" element={<Completion />} />
     <Route
       path="/login"
       element={
