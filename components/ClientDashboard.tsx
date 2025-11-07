@@ -67,6 +67,18 @@ const ClientDashboard: React.FC<ClientDashboardProps> = ({ appointments, session
 
   return (
     <div className="space-y-8">
+      {/* Botão para ir para a Landing Page */}
+      <div className="flex justify-end">
+        <button
+          className="px-4 py-2 rounded-md bg-slate-200 text-slate-800 hover:bg-slate-300"
+          onClick={() => {
+            // Redireciona para a página pública inicial
+            window.location.href = '/';
+          }}
+        >
+          Ir para a Landing Page
+        </button>
+      </div>
       {/* Assinatura atual */}
       <section className="bg-white rounded-lg shadow p-6">
         <h2 className="text-xl font-semibold mb-4">Minha Assinatura</h2>

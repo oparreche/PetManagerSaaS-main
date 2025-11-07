@@ -1,13 +1,30 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
+// Esta tela agora é a "Completion" detalhada,
+// que pode exibir dados da cobrança retornados via query params.
 const Completion: React.FC = () => {
   const navigate = useNavigate();
+  const { search } = useLocation();
+  const params = new URLSearchParams(search);
+
+  const event = params.get('event') || 'billing.paid';
+  const status = params.get('status') || 'PAID';
+  const referenceId = params.get('referenceId') || params.get('id') || params.get('billingId');
+  const amount = params.get('amount');
+
   return (
     <div className="min-h-screen bg-slate-100 flex items-center justify-center p-4">
       <div className="bg-white rounded-lg shadow-md w-full max-w-xl p-6">
         <h1 className="text-2xl font-semibold text-slate-800 mb-2">Finalização</h1>
         <p className="text-slate-600 mb-4">Seu pagamento foi concluído. Obrigado por usar o PetManager!</p>
+
+        <div className="space-y-2 text-sm text-slate-700">
+          <p><span className="font-medium">Evento:</span> {event}</p>
+          <p><span className="font-medium">Status:</span> {status}</p>
+          {referenceId && <p><span className="font-medium">Referência:</span> {referenceId}</p>}
+          {amount && <p><span className="font-medium">Valor:</span> R$ {(Number(amount) / 100).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }).replace('R$', '').trim()}</p>}
+        </div>
 
         <div className="mt-6 flex gap-3">
           <button
@@ -29,4 +46,3 @@ const Completion: React.FC = () => {
 };
 
 export default Completion;
-
